@@ -46,14 +46,40 @@ FULL JOIN tbl_livros l ON t.codigo_titulo = l.codigo_titulo;
 
 --2 Liste os títulos e suas descrições dos livros alugados (retorna 4 linhas)
 
-
+SELECT t.titulo, t.descricao
+FROM tbl_livros l
+JOIN tbl_titulo t ON l.codigo_titulo = t.codigo_titulo
+WHERE l.status = 'ALUGADO';
 
 --3 Liste os nomes dos clientes que não têm livros alugados (retorna 1 linha)
 
+SELECT c.nome
+FROM tbl_cliente c
+LEFT JOIN tbl_emprestimo e ON c.codigo_cliente = e.codigo_cliente
+WHERE e.codigo_cliente IS NULL;
+
+
 --4 Liste os títulos e suas categorias dos livros disponiveis (retorna 1 linha).
+
+SELECT t.titulo, t.categoria
+FROM tbl_livros l
+JOIN tbl_titulo t ON l.codigo_titulo = t.codigo_titulo
+WHERE l.status = 'DISPONIVEL';
 
 
 --5 Liste os nomes dos clientes e os títulos dos livros que eles têm alugados (retorna 5 linhas).
 
---6 Retorne o nome, titulo do livro e o status do esmprestimo do livro alugado pela Ana Oliveira (retorna 1 linha)
+SELECT c.nome, t.titulo
+FROM tbl_cliente c
+LEFT JOIN tbl_emprestimo e ON c.codigo_cliente = e.codigo_cliente
+LEFT JOIN tbl_livros l ON e.codigo_livro = l.cod_livro
+LEFT JOIN tbl_titulo t ON l.codigo_titulo = t.codigo_titulo;
 
+--6 Retorne o nome, titulo do livro e o status do esmprestimo do livro alugado pela Ana Oliveira (retorna 1 linha)
+ 
+SELECT c.nome, t.titulo, l.status
+FROM tbl_cliente c
+JOIN tbl_emprestimo e ON c.codigo_cliente = e.codigo_cliente
+JOIN tbl_livros l ON e.codigo_livro = l.cod_livro
+JOIN tbl_titulo t ON l.codigo_titulo = t.codigo_titulo
+WHERE c.nome = 'Ana Oliveira';
