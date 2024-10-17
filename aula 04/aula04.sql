@@ -1,4 +1,5 @@
 -- criar bd_aula04
+
 CREATE DATABASE bd_aula04;
 
 --tabelas para o exercicios

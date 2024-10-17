@@ -28,6 +28,7 @@ end; --psql
 commit; --pgadmin
 
 --exemplo 5
+
 begin;--psql
 select * from tbl_titulo;--duas telas
 insert into tbl_titulo values (3,'Hobbit','interessante');--psql
@@ -36,11 +37,14 @@ select * from tbl_titulo;--duas telas
 end;--psql
 
 --exemplo 6
+
 create table tbl_contas (cod_conta serial primary key, nome text, saldo real default 0);
 insert into tbl_contas(nome,saldo) values ('Rodrigo',1000),('Arley',2000),('Gildarcio',1500);
 select * from tbl_contas;
 update tbl_contas set saldo = saldo-100 where cod_conta=2;
+
 --deu pau no sistema!? caiu a energia ?
+
 update tbl_contas set saldo = 2000 where cod_conta=2;
 
 begin;
